@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_layout.xsd">
+    <container name="root" htmlTag="section" htmlClass="ht-mp-page-wrapper">
+        <container name="after.body.start" as="after.body.start" label="Page Top" before="-"/>
+        <container name="seller.login.header" htmlTag="header" htmlClass="ht-mp-login-header"/>
+        <container name="seller.login.content" htmlTag="div" htmlClass="ht-mp-login-content"/>
+        <container name="seller.login.footer" htmlTag="footer" htmlClass="ht-mp-login-footer"/>
+    </container>
+</layout>

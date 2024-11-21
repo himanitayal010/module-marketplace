@@ -1,0 +1,94 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+/** @var $block \Hts\Marketplace\Block\Transaction\History */
+?>
+<div class="ht-mp-design">
+    <div class="ht-mp-tr-amount-wrapper">
+        <div class="ht-mp-tr-amount-total">
+            <div class="ht-mp-tr-amount-total-title">
+                <div class="ht-mp-tr-txt-style"><?= $block->escapeHtml(__('Statement'))?></div>
+                <div class="ht-mp-tr-amount-style">
+                    <?= /* @noEscape */ $block->getFormatedPrice($block->getTotalSellerSale());?>
+                </div>
+                <div class="ht-mp-tr-last-style">
+                    <?= $block->escapeHtml(__('Total Seller earning'))?>
+                </div>
+                <div class="ht-mp-tr-last-style">
+                    (<?= $block->escapeHtml(__('base currency'))?>)
+                </div>
+            </div>
+            <div class="ht-mp-tr-amount-total-desc">
+                <div>
+                    <div class="ht-mp-tr-amount-style">
+                        <?= /* @noEscape */ "+ ".$block->getFormatedPrice($block->getTotalSale());?>
+                    </div>
+                    <div class="ht-mp-tr-last-style">
+                        <?= $block->escapeHtml(__('Total Sale'))?>
+                    </div>
+                </div>
+                <div>
+                    <div class="ht-mp-tr-amount-style">
+                        <?= /* @noEscape */ "- ".$block->getFormatedPrice($block->getTotalTax());?>
+                    </div>
+                    <div class="ht-mp-tr-last-style">
+                        <?= $block->escapeHtml(__('Tax'))?>
+                    </div>
+                </div>
+                <div>
+                    <div class="ht-mp-tr-amount-style">
+                        <?= /* @noEscape */ "- ".$block->getFormatedPrice($block->getTotalCommission());?>
+                    </div>
+                    <div class="ht-mp-tr-last-style">
+                        <?= $block->escapeHtml(__('Commission'))?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ht-mp-tr-payout-total">
+            <center>
+                <div class="ht-mp-tr-payout-style">
+                    <?= /* @noEscape */ $block->getFormatedPrice($block->getTotalPayout());?>
+                </div>
+                <div class="ht-mp-tr-last-style">
+                    <?= $block->escapeHtml(__('Total Payout'))?>
+                </div>
+                <div class="ht-mp-tr-last-style">
+                    (<?= $block->escapeHtml(__('base currency'))?>)
+                </div>
+            </center>
+        </div>
+        <div class="ht-mp-tr-remain-total">
+            <form action="<?= $block->escapeUrl($block->getUrl('marketplace/withdrawal/request'));?>" method="post">
+                <?= $block->getBlockHtml('formkey')?>
+                <?= $block->getBlockHtml('seller.formkey')?>
+                <input type="hidden" name="is_requested" value="1"/>
+                <div class="ht-mp-tr-remain-title">
+                    <div class="ht-mp-tr-txt-style"><?= $block->escapeHtml(__('Withdrawal'))?></div>
+                    <div class="ht-mp-tr-amount-style">
+                        <?= /* @noEscape */ $block->getFormatedPrice($block->getRemainTotal());?>
+                    </div>
+                    <div class="ht-mp-tr-last-style">
+                        <?= $block->escapeHtml(__('Remaining Payout'))?>
+                    </div>
+                    <div class="ht-mp-tr-last-style">
+                        (<?= $block->escapeHtml(__('base currency'))?>)
+                    </div>
+                </div>
+                <?php if ($block->getRemainTotal()*1) { ?>
+                    <div class="ht-mp-tr-remain-btn">
+                        <button type="submit" class="action-default action-primary">
+                        <?= $block->escapeHtml(__('Make a Withdrawal'))?>
+                        </button>
+                    </div>
+                <?php }?>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+?>
+<input type="hidden" name="seller_panel" id="seller_panel" data-form-part="customer_form" value="<?= $block->escapeHtml($helper->getParam("seller_panel")); ?>" />

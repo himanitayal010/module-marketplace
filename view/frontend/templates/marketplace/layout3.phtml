@@ -1,0 +1,201 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$bannerDisplay      =   $helper->getDisplayBannerLayout3();
+$bannerImage        =   $helper->getBannerImageLayout3();
+$bannerContent      =   $helper->getBannerContentLayout3();
+$marketplacebutton  =   $helper->getBannerButtonLayout3();
+$marketplacelabel1  =   $helper->getMarketplacelabel1Layout3();
+$marketplacelabel2  =   $helper->getMarketplacelabel2Layout3();
+$marketplacelabel3  =   $helper->getMarketplacelabel3Layout3();
+$iconsDisplay       =   $helper->getDisplayIconLayout3();
+$iconImage1         =   $helper->getIconImage1Layout3();
+$iconImage1Label    =   $helper->getIconImageLabel1Layout3();
+$iconImage2         =   $helper->getIconImage2Layout3();
+$iconImage2Label    =   $helper->getIconImageLabel2Layout3();
+$iconImage3         =   $helper->getIconImage3Layout3();
+$iconImage3Label    =   $helper->getIconImageLabel3Layout3();
+$iconImage4         =   $helper->getIconImage4Layout3();
+$iconImage4Label    =   $helper->getIconImageLabel4Layout3();
+$iconImage5         =   $helper->getIconImage5Layout3();
+$iconImage5Label    =   $helper->getIconImageLabel5Layout3();
+$iconSeperatorImage = $this->getViewFileUrl('Hts_Marketplace::images/landingpage2/icon/sell-page-2-arrow-right.png');
+?>
+<link rel="stylesheet" type="text/css" href="<?= /* @noEscape */  $this->getViewFileUrl('Hts_Marketplace::css/landingpage_two.css');?>">
+<div class="ht-mp-design ht-mp-landingpage ht-mp-landingpage-layout3">
+    <?php
+    $sellerAccountUrl = $block->getUrl(
+        'marketplace/account/becomeseller',
+        ["_secure" => $this->getRequest()->isSecure()]
+    );
+    ?>
+    <div class="ht-mp-banner-container-layout2">
+        <div class="ht-mp-banner">
+            <?php if ($bannerDisplay) { ?>
+            <div class="ht-list-container ht-mp-header">
+                <div class="ht-mp-header-container">
+                    <?= /* @noEscape */  $block->getCmsFilterContent($bannerContent)?>
+                </div>
+            </div>
+                <?php
+            } ?>
+            <?php if (!$helper->isCustomerLoggedIn()): ?>
+                <?php $sellerAccountUrl = '#register-as-seller';?>
+                <div class="ht-list-container">
+                    <div class="ht-list-container-registration ht-text-transform-left" id="register-as-seller">
+                        <div class="ht-list-container-feature-label"><?= /* @noEscape */  __('Register As Seller')?></div>
+                        <?= $block->getChildHtml('customer_form_register_layout3');?>
+                    </div>
+                </div>
+        <?php endif; ?>
+        </div>
+    </div>
+    <h1 class="ht-marketplace-label"><?= $block->escapeHtml($marketplacelabel1)?></h1>
+    <?php
+    if ($iconsDisplay) {?>
+        <div class="ht-mp-icon-container">
+            <div class="ht-mp-icon-wraper">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconImage1) ?>">
+                </div>
+                <span class="ht-marketplace-label-span"><?= $block->escapeHtml($iconImage1Label) ?></span>
+            </div>
+            <div class="ht-mp-icon-seperator">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconSeperatorImage) ?>">
+                </div>
+            </div>
+            <div class="ht-mp-icon-wraper">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconImage2) ?>">
+                </div>
+                <span class="ht-marketplace-label-span"><?= $block->escapeHtml($iconImage2Label) ?></span>
+            </div>
+            <div class="ht-mp-icon-seperator">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconSeperatorImage) ?>">
+                </div>
+            </div>
+            <div class="ht-mp-icon-wraper">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconImage3) ?>">
+                </div>
+                <span class="ht-marketplace-label-span"><?= $block->escapeHtml($iconImage3Label) ?></span>
+            </div>
+            <div class="ht-mp-icon-seperator">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconSeperatorImage) ?>">
+                </div>
+            </div>
+            <div class="ht-mp-icon-wraper">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconImage4) ?>">
+                </div>
+                <span class="ht-marketplace-label-span"><?= $block->escapeHtml($iconImage4Label) ?></span>
+            </div>
+            <div class="ht-mp-icon-seperator">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconSeperatorImage) ?>">
+                </div>
+            </div>
+            <div class="ht-mp-icon-wraper">
+                <div class="ht-mp-icon">
+                    <img src="<?= $block->escapeUrl($iconImage5) ?>">
+                </div>
+                <span class="ht-marketplace-label-span"><?= $block->escapeHtml($iconImage5Label) ?></span>
+            </div>
+        </div>
+        <?php
+    } ?>
+    <h1 class="ht-marketplace-label"><?= $block->escapeHtml($marketplacelabel2) ?></h1>
+    <div class="ht-list-container-wrapper ht-text-transform-left">
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Huge Buyers');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Get your product showcased to a huge range of customers, as everyday many user shops from us.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Ask Questions');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-ask"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('If you ever get stuck, let us know and we will help you with the best we have in minimum possible time.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Quick Payments');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-quickpay"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Once goods have been successfully delivered to respective customers, you can request for payout.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Manage Your Orders');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-order"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Manage your orders at maximum ease and help customers to have a better shopping experience.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Earn Badges');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-badges"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Once you climb a milestone you get awarded with a badge, which make you look like more pro.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Get Yourself Verified');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-verified"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Add a verified brooch to your profile by providing very necessary some business details and documents.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Customize Profile');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-profile"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Customize your profile with information like profile logo, shop location, shipping and refund policies.');?></div>
+        </div>
+        <div class="ht-layout2-box-container">
+            <span class="ht-layout2-box-span-container"><?= /* @noEscape */  __('Add Media');?></span>
+            <span class="ht-layout2-box-span">
+                <span class="ht-layout2-box-span-image ht-layout2-box-span-image-media"></span>
+            </span>
+            <div class="ht-icon-div"><?= /* @noEscape */  __('Embed video YouTube to make your account more genuine and stand out in the queue.');?></div>
+        </div>
+    </div>
+    <div class="ht-list-container-wrapper ht-text-transform-center">
+        <span class="ht-icon-check-span"><?= $block->escapeHtml($marketplacelabel3) ?></span>
+        <div class="primary">
+            <a href="<?= $block->escapeUrl($sellerAccountUrl)?>">
+                <button type="submit" class="action submit primary" title="<?= $block->escapeHtml($marketplacebutton); ?>">
+                    <span><?= $block->escapeHtml($marketplacebutton); ?></span>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "jquery",
+        "mage/mage",
+    ], function($){
+        var bannerDisplay = '<?= /* @noEscape */ $bannerDisplay;?>';
+        $('.page-title-wrapper').hide();
+        $('.ht-mp-landingpage').insertBefore('#maincontent');
+        if(bannerDisplay == 1) {
+          $('.ht-mp-banner').css('background-image','url("<?= $block->escapeUrl($bannerImage) ?>")');
+        } else {
+          $('.ht-list-container').css('float','right');
+        }
+    });
+</script>

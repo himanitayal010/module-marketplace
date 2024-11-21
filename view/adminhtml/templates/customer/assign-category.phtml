@@ -1,0 +1,145 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+?>
+<div class="admin__fieldset-wrapper opened">
+    <div class="admin__fieldset-wrapper-content">
+        <fieldset class="admin__fieldset">
+            <div class="field">
+                <label class="label"><?= $block->escapeHtml(__('Product Category')) ?>:</label>
+                <div class="ht-field ht-category">
+                    <div class="ht-for-validation">
+                        <div id="ht-category-label"><?= $block->escapeHtml(__("CATEGORIES")); ?></div>
+                        <?php
+                            $allowedCategory = $block->getSellerAllowedCategory();
+                            $category_model = $block->getCategory();
+                            $categories = $block->getCategoriesList();
+                            $count = 0;
+                        foreach ($categories as $category) {
+                            $selected = in_array($category['entity_id'], $allowedCategory) ? 'checked' :'';
+                            if ($block->hasChildren($category['entity_id'])) { ?>
+                                    <div class="ht-cat-container ht-left-margin-5px">
+                                        <span class="ht-plus">
+                                        </span><span class="ht-foldersign"></span>
+                                        <span class="ht-elements ht-cat-name"><?= $block->escapeHtml($category->getName()) ?></span>
+                                        <input data-form-part="customer_form" class="ht-elements" type="checkbox" name="seller_category_ids[<?= $block->escapeHtml($category['entity_id']) ?>]" value='<?= $block->escapeHtml($category['entity_id']) ?>' <?= $block->escapeHtml($selected) ?> />
+                                    </div>
+                                    <?php
+                            } else { ?>
+                                    <div class="ht-cat-container">
+                                        </span><span class="ht-foldersign"></span>
+                                        <span class="ht-elements ht-cat-name"><?= $block->escapeHtml($category->getName()) ?></span>
+                                        <input data-form-part="customer_form" class="ht-elements" type="checkbox" name="seller_category_ids[<?= $block->escapeHtml($category['entity_id']) ?>]" value='<?= $block->escapeHtml($category['entity_id']) ?>' <?= $block->escapeHtml($selected) ?> />
+                                    </div>
+                                       <?php
+                            }
+                                $count++;
+                        } ?>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<script>
+    require([
+        "jquery",
+        "mage/mage",
+        "prototype"
+
+    ], function($){
+        var allowedCategory = $.parseJSON('<?= /* @noEscape */ json_encode($allowedCategory)?>');
+        $("#container").delegate('.ht-plus ,.ht-plusend,.ht-minus, .ht-minusend ',"click",function(){
+            var thisthis=$(this);
+            if (thisthis.hasClass("ht-plus") || thisthis.hasClass("ht-plusend")) {
+                if (thisthis.hasClass("ht-plus")) {
+                    thisthis.removeClass('ht-plus').addClass('ht-plus_click');
+                }
+                if (thisthis.hasClass("ht-plusend")) {
+                    thisthis.removeClass('ht-plusend').addClass('ht-plusend_click');
+                }
+                thisthis.prepend("<span class='ht-node-loader'></span>");
+                callCategoryTreeAjaxFunction(thisthis);
+            }
+            if (thisthis.hasClass("ht-minus") || thisthis.hasClass("ht-minusend")) {
+                callRemoveCategoryNodeFunction(thisthis);
+            }
+        });
+        function callCategoryTreeAjaxFunction(thisthis) {
+            var self = this;
+            var i, len, name, id;
+            $.ajax({
+                url     :   "<?= $block->escapeUrl($block->getUrl('marketplace/seller/categorytreeajax/'))?>",
+                type    :   "POST",
+                data    :   {
+                    parentCategoryId:thisthis.siblings("input").val()
+                },
+                dataType:   "html",
+                success :   function(content){
+                    var newdata=  $.parseJSON(content);
+                    len = newdata.length;
+                    var pxl= parseInt(thisthis.parent(".ht-cat-container").css("margin-left").replace("px",""))+20;
+                    thisthis.find(".ht-node-loader").remove();
+                    if (thisthis.attr("class") == "ht-plus") {
+                        thisthis.attr("class","ht-minus");
+                    }
+                    if (thisthis.attr("class") == "ht-plusend") {
+                        thisthis.attr("class","ht-minusend");
+                    }
+                    if (thisthis.attr("class") == "ht-plus_click") {
+                        thisthis.attr("class","ht-minus");
+                    }
+                    if (thisthis.attr("class") == "ht-plusend_click") {
+                        thisthis.attr("class","ht-minusend");
+                    }
+                    for (i=0;i<len; i++) {
+                        id=newdata[i].id;
+                        name=newdata[i].name;
+                        var checked = $.inArray(id,allowedCategory) != -1? 'checked' : '';
+                        if (newdata[i].counting === 0) {
+                            thisthis.parent(".ht-cat-container").after('<div class="ht-removable ht-cat-container" style="display:none;margin-left:'+pxl+'px;"><span  class="ht-no"></span><span class="ht-foldersign"></span><span class="ht-elements ht-cat-name">'+ name +'</span><input data-form-part="customer_form" class="ht-elements" type="checkbox" name="seller_category_ids['+id+']" value='+ id +' '+checked+'></div>');
+                        } else {
+                            thisthis.parent(".ht-cat-container").after('<div class="ht-removable ht-cat-container" style="display:none;margin-left:'+pxl+'px;"><span  class="ht-plusend"></span><span class="ht-foldersign"></span><span class="ht-elements ht-cat-name">'+ name +'</span><input data-form-part="customer_form" class="ht-elements" type="checkbox" name="seller_category_ids['+id+']" value='+ id +' '+checked+'></div>');
+                        }
+                    }
+                    thisthis.parent(".ht-cat-container").nextAll().slideDown(300);
+                },
+                error: function (response) {
+                    alert({
+                        content: self.options.ajaxErrorMessage
+                    });
+                }
+            });
+        }
+
+        function callRemoveCategoryNodeFunction(thisthis) {
+            if (thisthis.attr("class") == "ht-minus") {
+                thisthis.attr("class","ht-plus");
+            }
+            if (thisthis.attr("class") == "ht-minusend") {
+                thisthis.attr("class","ht-plusend");
+            }
+            var thiscategory = thisthis.parent(".ht-cat-container");
+            var marg= parseInt(thiscategory.css("margin-left").replace("px",""));
+            while (thiscategory.next().hasClass("ht-removable")) {
+                if (parseInt(thiscategory.next().css("margin-left").replace("px",""))>marg) {
+                    thiscategory.next().slideUp("slow",function() {
+                        $(this).remove();
+                    });
+                }
+                thiscategory = thiscategory.next();
+                if (typeof thiscategory.next().css("margin-left")!= "undefined") {
+                    if (marg == thiscategory.next().css("margin-left").replace("px","")) {
+                        break;
+                    }
+                }
+            }
+        }
+    });
+</script>

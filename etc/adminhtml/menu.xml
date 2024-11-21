@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Hts_Marketplace::marketplace" title="Marketplace Management" module="Hts_Marketplace" sortOrder="10" resource="Hts_Marketplace::marketplace"/>
+
+        <add id="Hts_Marketplace::product" title="Manage Product" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/product" resource="Hts_Marketplace::product"/>
+
+        <add id="Hts_Marketplace::seller" title="Manage Seller" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/seller" resource="Hts_Marketplace::seller"/>
+
+        <add id="Hts_Marketplace::commission" title="Manage Commission" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/commission" resource="Hts_Marketplace::commission"/>
+
+        <add id="Hts_Marketplace::transaction" title="Sellers Transaction" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/transaction" resource="Hts_Marketplace::transaction"/>
+
+        <add id="Hts_Marketplace::feedback" title="Manage Feedback" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/feedback" resource="Hts_Marketplace::feedback"/>
+
+        <add id="Hts_Marketplace::menu" title="Menu" module="Hts_Marketplace" sortOrder="10" parent="Hts_Marketplace::marketplace" dependsOnModule="Hts_Marketplace" resource="Hts_Marketplace::marketplace"/>
+
+        <add id="Hts_Marketplace::sellerflag" title="Seller Flag Reason" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/sellerflag" resource="Hts_Marketplace::sellerflag"/>
+
+        <add id="Hts_Marketplace::productflag" title="Product Flag Reason" module="Hts_Marketplace" sortOrder="1" parent="Hts_Marketplace::menu" action="marketplace/productflag" resource="Hts_Marketplace::productflag"/>
+    </menu>
+</config>

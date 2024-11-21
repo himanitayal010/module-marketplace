@@ -1,0 +1,86 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+
+/** @var $block \Hts\Marketplace\Block\Account\Dashboard */
+
+$reviewcollection = $block->getReviewcollection();
+?>
+<div class="ht-mp-design ht-mp-design2">
+    <fieldset class="fieldset info ht-mp-fieldset">
+        <legend class="legend">
+            <span><?= /* @noEscape */ __('Latest Comments & Reviews') ?></span>
+        </legend>
+        <div class="grid">
+            <div class="hor-scroll">
+                <?php
+                if (count($reviewcollection)==0) { ?>
+                    <div class="ht-emptymsg">
+                        <?= /* @noEscape */ __('No comment & review available'); ?>
+                    </div>
+                    <?php
+                } else {
+                    $i = 0;
+                    foreach ($reviewcollection as $keyed) {
+                        $name=$block->getCustomer()->load($keyed->getBuyerId())->getName();
+                        $i++; ?>
+                        <div class="ht-orderbox <?php if ($i==1) { echo "ht-first-order"; }?>">
+                            <div class="ht-mp-dashboard-review-container">
+                                <div class="ht-orderbox-content1">
+                                    <div class="ht-feedback-details">
+                                        <div class="mpfeedback">
+                                            <div class="price">
+                                                <span class="ht-ordertitle-label ht-span">
+                                                    <?= /* @noEscape */ __('Price') ?>
+                                                </span>
+                                                <span class="ht-ordertitle-label">:</span>
+                                                <div class="ratingslider-box">
+                                                    <div class="rating" style="width:<?= /* @noEscape */ ceil($keyed['feed_price']);?>%;"></div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="value">
+                                                <span class="ht-ordertitle-label ht-span"><?= /* @noEscape */ __('Value') ?> </span><span class="ht-ordertitle-label">:</span>
+                                                <div class="ratingslider-box" >
+                                                    <div class="rating" style="width:<?= /* @noEscape */ ceil($keyed['feed_value']);?>%;"></div>
+                                                </div>
+                                                <div class="clear"></div>
+                                            </div>
+                                            <div class="quality">
+                                                <span class="ht-ordertitle-label ht-span"><?= /* @noEscape */ __('Quality') ?> </span><span class="ht-ordertitle-label">:</span>
+                                                <div class="ratingslider-box">
+                                                    <div class="rating" style="width:<?= /* @noEscape */ ceil($keyed['feed_quality']);?>%;"></div>
+                                                </div>
+                                                <div class="ht-clear"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="ht-feedback-desc">
+                                        <div class="comment"><?= $block->escapeHtml($keyed['feed_review']); ?> </div>
+                                    </div>
+                                </div>
+                                <div class="ht-orderbox-content2">
+                                    <div class="ht-orderbox-details">
+                                        <span class="ht-title-label"><?= /* @noEscape */ __('Customer: ');?></span>
+                                        <span class="ht-label"><?= $block->escapeHtml($name);?></span>&nbsp;&nbsp;
+                                        <span class="ht-title-label"><?= /* @noEscape */ __('Date: ');?></span>
+                                        <span class="ht-label"><?= /* @noEscape */ $keyed['created_at'] ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ht-clear"></div>
+                        <?php
+                    } ?>
+                    <?php
+                } ?>
+            </div>
+        </div>
+    </fieldset>
+</div>

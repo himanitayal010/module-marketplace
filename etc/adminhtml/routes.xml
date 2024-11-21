@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="marketplace" frontName="marketplace">
+            <module name="Hts_Marketplace"/>
+        </route>
+    </router>
+</config>

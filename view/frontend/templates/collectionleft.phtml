@@ -1,0 +1,19 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+?>
+<?php
+    $helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+    $partner = $block->getProfileDetail();
+?>
+<?php if (!empty($partner['shop_url'])): ?>
+    <div class="ht-mp-design">
+        <?= $this->getChildHtml();?>
+    </div>
+<?php endif; ?>

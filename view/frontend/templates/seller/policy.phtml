@@ -1,0 +1,15 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$partner = $block->getProfileDetail();
+if ($partner['shop_url'] && $helper->getSellerPolicyApproval()) {
+  /* @noEscape */ echo $partner['privacy_policy'];
+}  ?>

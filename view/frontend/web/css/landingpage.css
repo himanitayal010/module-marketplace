@@ -1,0 +1,125 @@
+.ht-mp-landingpage-layout1 *, .ht-mp-landingpage-layout2 *, .ht-mp-landingpage-layout3 * {
+    box-sizing: border-box;
+}
+
+.ht-mp-landingpage-layout3  .ht-mp-header {
+    width: 63% !important;
+}
+
+.ht-mp-landingpage.ht-mp-landingpage-layout3 .ht-list-container {
+    width: 37%;
+}
+
+
+body .ht-mp-landingpage .form.create.account .info .field,
+body .ht-mp-landingpage .form.create.account .account .password,
+body .ht-mp-landingpage .form.create.account .account .confirmation {
+    width: 50%;
+    padding-right: 10px;
+    float: left;
+}
+body .ht-mp-landingpage .form.create.account .info .field.field-name-lastname {
+    padding-left: 10px;
+    padding-right: 0px;
+}
+body .ht-mp-landingpage .form.create.account .account .confirmation {
+    padding-left: 10px;
+    padding-right: 0px;
+}
+body .ht-mp-landingpage .form.create.account .account input[type="email"] {
+    width: 100%;
+}
+.ht-mp-landingpage.ht-mp-design input[type="text"],
+.ht-mp-landingpage.ht-mp-design input[type="email"],
+.ht-mp-landingpage.ht-mp-design input[type="password"] {
+    width: 100%;
+}
+.ht-mp-landingpage #ht-termsconditions-box input {
+    vertical-align: middle;
+    margin-top: 0px;
+}
+.ht-mp-landingpage #ht-termsconditions-box label {
+    vertical-align: middle;
+}
+.ht-mp-landingpage .ht-list-container-registration .actions-toolbar {
+    margin-top: 15px;
+}
+.ht-mp-landingpage-layout3 .ht-mp-icon-seperator {
+    width: 60px;
+    text-align: center;
+}
+.ht-mp-landingpage-layout3 .ht-layout2-box-container {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+    min-height: 300px;
+    height: auto;
+}
+.ht-mp-landingpage-layout3 .ht-list-container-wrapper {
+    text-align: center;
+}
+
+.ht-mp-landingpage .ht-mp-banner-container {
+    width: 100%;
+}
+body .ht-mp-landingpage ul {
+    width: 100%;
+}
+body .ht-mp-landingpage .ht-list-container {
+    width: 50%;
+    padding: 15px;
+}
+.ht-mp-icon-container.ht-mp-landingpage-one-icon-container {
+    font-size: 0;
+}
+.ht-mp-landingpage-one-icon-container .ht-mp-icon-wraper {
+    padding: 0px 15px;
+    width: 25%;
+    vertical-align: top;
+}
+.ht-mp-landingpage-one-icon-container .ht-mp-icon {
+    width: auto;
+}
+.ht-mp-landingpage-one-icon-container .ht-marketplace-label-span {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 640px) {
+    .ht-mp-landingpage-one-icon-container .ht-mp-icon-wraper {
+        width: 50%;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .ht-mp-landingpage-one-icon-container .ht-mp-icon-wraper {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+body .ht-list-container-wrapper {
+    width: 100%;
+    max-width: 900px;
+    padding: 25px 15px;
+}
+
+.ht-mp-landingpage-layout2.ht-mp-landingpage .ht-list-container {
+    float: left;
+}
+.ht-mp-landingpage-layout2.ht-mp-landingpage .ht-list-container > ul{
+    padding: 0px;
+    margin: 0px;
+}
+@media (max-width: 640px) {
+    body .ht-mp-landingpage .ht-list-container {
+        width: 100%;
+    }
+    .ht-mp-landingpage-layout2.ht-mp-landingpage .ht-list-container {
+        float: left;
+        padding: 0 10px;
+    }
+}

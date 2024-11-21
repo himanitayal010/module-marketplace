@@ -1,0 +1,57 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$partner=$block->getProfileDetail();
+if ($partner['shop_url']) {
+    if ($helper->getActiveColorPicker()) { ?>
+        <style>
+            .page-main{
+                background-image:none;
+                background-color:<?= $block->escapeHtml($partner['background_width']);?>;
+            }
+        </style>
+    <?php } ?>
+    <div class="ht_mp_design">
+        <?= $block->getChildHtml("marketplace_seller_top_block")?>
+        <div class="ht-mp-collection-container">
+            <?= $this->getChildHtml('marketplace_sellerprofile_recently_added_products')?>
+            <div class="ht-mp-profile-block" id="about-us">
+                <div class="ht-mp-aboutus-title">
+                    <?= $block->escapeHtml(__("About Us"))?>
+                </div>
+                <div class="ht-mp-aboutus-data">
+                    <?= /* @noEscape */ $partner['company_description'];?>
+                    <?= $block->getChildHtml("marketplace_seller_description")?>
+                </div>
+            </div>
+            <?= $this->getChildHtml('marketplace_sellerprofile_rating')?>
+            <?php if ($helper->getSellerPolicyApproval()) { ?>
+                <div class="ht-mp-profile-block" id="ht-mp-policy-block">
+                    <div class="ht-mp-policy-block ht-mp-shipping-policy" id="shipping-policy">
+                        <div class="ht-mp-policy-block-title">
+                            <?= $block->escapeHtml(__("Shipping Policy"))?>
+                        </div>
+                        <div class="ht-mp-policy-block-data">
+                            <?= /* @noEscape */ $partner['shipping_policy'];?>
+                        </div>
+                    </div>
+                    <div class="ht-mp-policy-block ht-mp-return-policy" id="return-policy">
+                        <div class="ht-mp-policy-block-title">
+                            <?= /* @noEscape */ __("Return Policy")?>
+                        </div>
+                        <div class="ht-mp-policy-block-data">
+                            <?= /* @noEscape */ $partner['return_policy'];?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+<?php }  ?>

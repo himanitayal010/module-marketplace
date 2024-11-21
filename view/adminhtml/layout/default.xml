@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Hts_Marketplace::css/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="left">
+            <block class="Hts\Marketplace\Block\Adminhtml\Notification" name="notification_template" after="-" template="Hts_Marketplace::notification/notification.phtml">
+                <!-- call js file using js component -->
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="notification-content" xsi:type="array">
+                                <item name="component" xsi:type="string">Hts_Marketplace/js/notification</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,24 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+?>
+<div class="admin__fieldset-wrapper opened">
+    <div class="admin__fieldset-wrapper-content">
+        <fieldset class="admin__fieldset">
+            <table class="admin__table-secondary">
+                <tbody>
+                    <tr>
+                        <th><?= $block->escapeHtml(__('Assigned Product Ids')) ?></th>
+                        <td style="word-break: break-all;"><?= $block->escapeHtml($block->getProductIds()) ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </div>
+</div>

@@ -1,0 +1,185 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$bannerDisplay      =   $helper->getDisplayBannerLayout2();
+$bannerImage        =   $helper->getBannerImageLayout2();
+$bannerContent      =   $helper->getBannerContentLayout2();
+$marketplacebutton  =   $helper->getBannerButtonLayout2();
+$sellerAccountUrl   =   $block->getUrl(
+    'marketplace/account/becomeseller',
+    ["_secure" => $this->getRequest()->isSecure()]
+);
+if (!$helper->isCustomerLoggedIn()) {
+    $sellerAccountUrl = '#register-as-seller';
+} ?>
+<link rel="stylesheet" type="text/css" href="<?= /* @noEscape */ $this->getViewFileUrl('Hts_Marketplace::css/landingpage_one.css');?>">
+<div class="ht-mp-design ht-mp-landingpage ht-mp-landingpage-layout2">
+    <?php if ($bannerDisplay): ?>
+        <div class="ht-mp-banner-container-layout2">
+            <div class="ht-mp-banner">
+                <div class="ht-mp-header">
+                    <?= /* @noEscape */ $block->getCmsFilterContent($bannerContent)?>
+                    <p>
+                        <a href="<?= $block->escapeUrl($sellerAccountUrl)?>">
+                            <button class="button ht-mp-landing-button">
+                                <span>
+                                    <span>
+                                        <strong><?= $block->escapeHtml($marketplacebutton); ?></strong>
+                                    </span>
+                                </span>
+                            </button>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="ht-list-container-wrapper ht-text-transform-left">
+        <div class="ht-list-container">
+            <ul>
+                <li class="ht-icon1">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Huge Buyers');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Get your product showcased to a huge range of customers, as everyday many user shops from us.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon3">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Quick Payments');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Once goods have been successfully delivered to respective customers, you can request for payout.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon5">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Earn Badges');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Once you climb a milestone you get awarded with a badge, which make you look like more pro.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon7">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Customize Profile');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Customize your profile with information like profile logo, shop location, shipping and refund policies.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon9">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Add Media');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Embed video YouTube to make your account more genuine and stand out in the queue.');?></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="ht-list-container">
+            <ul>
+                <li class="ht-icon2">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Got Stuck? Ask Questions');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('If you ever get stuck, let us know and we will help you with the best we have in minimum possible time.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon4">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Manage Your Orders');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Manage your orders at maximum ease and help customers to have a better shopping experience.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon6">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Get Yourself Verified');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Add a verified brooch to your profile by providing very necessary some business details and documents.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon8">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Create Your Own Collection');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Add various products and create your own product collection that will be visible to customers.');?></div>
+                    </div>
+                </li>
+                <li class="ht-icon10">
+                    <div class="ht-icon-container">
+                    </div>
+                    <div class="ht-icon-content">
+                        <span class="ht-icon-span"><?= /* @noEscape */ __('Add Unlimited Products');?></span>
+                        <div class="ht-icon-div"><?= /* @noEscape */ __('Add unlimited products which you want and fulfill your customers need.');?></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="ht-list-container-class">
+        <div class="ht-list-container-wrapper ht-text-transform-left">
+            <div class="ht-list-container">
+                <div class="ht-list-container-feature-label"><?= /* @noEscape */ __('Really Easy To Setup And Customize');?></div>
+                <ul>
+                    <li class="ht-icon-check">
+                        <span class="ht-icon-check-span"><?= /* @noEscape */ __('Create an Account');?></span>
+                    </li>
+                    <li class="ht-icon-check">
+                        <span class="ht-icon-check-span"><?= /* @noEscape */ __('Create your Profile');?></span>
+                    </li>
+                    <li class="ht-icon-check">
+                        <span class="ht-icon-check-span"><?= /* @noEscape */ __('Add your Details');?></span>
+                    </li>
+                    <li class="ht-icon-check">
+                        <span class="ht-icon-check-span"><?= /* @noEscape */ __('Add your Product Listing');?></span>
+                    </li>
+                    <li class="ht-icon-check">
+                        <span class="ht-icon-check-span"><?= /* @noEscape */ __('Sell your Products and Earn Points');?></span>
+                    </li>
+                </ul>
+            </div>
+            <?php if (!$helper->isCustomerLoggedIn()): ?>
+                <div class="ht-list-container ht-list-container-registration" id="register-as-seller">
+                    <div class="ht-list-container-feature-label"><?= /* @noEscape */ __('Register As Seller')?></div>
+                    <?= $block->getChildHtml('customer_form_register');?>
+
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="ht-list-container-wrapper ht-text-transform-center">
+        <span class="ht-icon-check-span"><?= /* @noEscape */ __('Open your own online shop & explore a new world of marketplace with more and millions of shoppers')?></span>
+        <div class="primary">
+            <a href="<?= $block->escapeUrl($sellerAccountUrl)?>">
+                <button type="submit" class="action submit primary" title="<?= /* @noEscape */ __('Open Your Shop')?>">
+                    <span><?= /* @noEscape */ __('Open Your Shop')?></span>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "jquery",
+        "mage/mage",
+    ], function($){
+        $('.page-title-wrapper').hide();
+        $('.ht-mp-landingpage').insertBefore('#maincontent');
+        $('.ht-mp-banner').css('background-image','url("<?= $block->escapeUrl($bannerImage) ?>")');
+    });
+</script>

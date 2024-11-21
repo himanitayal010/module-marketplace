@@ -1,0 +1,410 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$partner = $block->getProfileDetail();
+$shopUrl = $block->escapeHtml($partner['shop_url']);
+$sellerId = $partner->getSellerId();
+$feeds = $block->getFeed();
+if (empty($feeds['feed_price'])) {
+    $feeds['feed_price'] = 0;
+}
+if (empty($feeds['feed_value'])) {
+    $feeds['feed_value'] = 0;
+}
+if (empty($feeds['feed_quality'])) {
+    $feeds['feed_quality'] = 0;
+}
+$widthPriceStar5 = 0;
+$widthPriceStar4 = 0;
+$widthPriceStar3 = 0;
+$widthPriceStar2 = 0;
+$widthPriceStar1 = 0;
+
+$borderPriceStar5 = 0;
+$borderPriceStar4 = 0;
+$borderPriceStar3 = 0;
+$borderPriceStar2 = 0;
+$borderPriceStar1 = 0;
+if ($feeds['feedcount']) {
+    $widthPriceStar5 = ($feeds['price_star_5']*100)/$feeds['feedcount'];
+    if ($widthPriceStar5) {
+        $borderPriceStar5 = 3;
+    }
+    $widthPriceStar4 = ($feeds['price_star_4']*100)/$feeds['feedcount'];
+    if ($widthPriceStar4) {
+        $borderPriceStar4 = 3;
+    }
+    $widthPriceStar3 = ($feeds['price_star_3']*100)/$feeds['feedcount'];
+    if ($widthPriceStar3) {
+        $borderPriceStar3 = 3;
+    }
+    $widthPriceStar2 = ($feeds['price_star_2']*100)/$feeds['feedcount'];
+    if ($widthPriceStar2) {
+        $borderPriceStar2 = 3;
+    }
+    $widthPriceStar1 = ($feeds['price_star_1']*100)/$feeds['feedcount'];
+    if ($widthPriceStar1) {
+        $borderPriceStar1 = 3;
+    }
+}
+$avgPriceRatingStar = round(($feeds['price']/20), 1, PHP_ROUND_HALF_UP);
+$avgPriceRatingClass = "ht-mp-rating-icon ht-mp-star".(int)$avgPriceRatingStar;
+
+$widthValueStar5 = 0;
+$widthValueStar4 = 0;
+$widthValueStar3 = 0;
+$widthValueStar2 = 0;
+$widthValueStar1 = 0;
+
+$borderValueStar5 = 0;
+$borderValueStar4 = 0;
+$borderValueStar3 = 0;
+$borderValueStar2 = 0;
+$borderValueStar1 = 0;
+if ($feeds['feedcount']) {
+    $widthValueStar5 = ($feeds['value_star_5']*100)/$feeds['feedcount'];
+    if ($widthValueStar5) {
+        $borderValueStar5 = 3;
+    }
+    $widthValueStar4 = ($feeds['value_star_4']*100)/$feeds['feedcount'];
+    if ($widthValueStar4) {
+        $borderValueStar4 = 3;
+    }
+    $widthValueStar3 = ($feeds['value_star_3']*100)/$feeds['feedcount'];
+    if ($widthValueStar3) {
+        $borderValueStar3 = 3;
+    }
+    $widthValueStar2 = ($feeds['value_star_2']*100)/$feeds['feedcount'];
+    if ($widthValueStar2) {
+        $borderValueStar2 = 3;
+    }
+    $widthValueStar1 = ($feeds['value_star_1']*100)/$feeds['feedcount'];
+    if ($widthValueStar1) {
+        $borderValueStar1 = 3;
+    }
+}
+$avgValueRatingStar = round(($feeds['value']/20), 1, PHP_ROUND_HALF_UP);
+$avgValueRatingClass = "ht-mp-rating-icon ht-mp-star".(int)$avgValueRatingStar;
+
+$widthQualityStar5 = 0;
+$widthQualityStar4 = 0;
+$widthQualityStar3 = 0;
+$widthQualityStar2 = 0;
+$widthQualityStar1 = 0;
+
+$borderQualityStar5 = 0;
+$borderQualityStar4 = 0;
+$borderQualityStar3 = 0;
+$borderQualityStar2 = 0;
+$borderQualityStar1 = 0;
+if ($feeds['feedcount']) {
+    $widthQualityStar5 = ($feeds['quality_star_5']*100)/$feeds['feedcount'];
+    if ($widthQualityStar5) {
+        $borderQualityStar5 = 3;
+    }
+    $widthQualityStar4 = ($feeds['quality_star_4']*100)/$feeds['feedcount'];
+    if ($widthQualityStar4) {
+        $borderQualityStar4 = 3;
+    }
+    $widthQualityStar3 = ($feeds['quality_star_3']*100)/$feeds['feedcount'];
+    if ($widthQualityStar3) {
+        $borderQualityStar3 = 3;
+    }
+    $widthQualityStar2 = ($feeds['quality_star_2']*100)/$feeds['feedcount'];
+    if ($widthQualityStar2) {
+        $borderQualityStar2 = 3;
+    }
+    $widthQualityStar1 = ($feeds['quality_star_1']*100)/$feeds['feedcount'];
+    if ($widthQualityStar1) {
+        $borderQualityStar1 = 3;
+    }
+}
+$avgQualityRatingStar = round(($feeds['quality']/20), 1, PHP_ROUND_HALF_UP);
+$avgQualityRatingClass = "ht-mp-rating-icon ht-mp-star".(int)$avgQualityRatingStar;
+
+$feedbackUrl = $helper->getRewriteUrl('marketplace/seller/feedback/shop/'.$shopUrl);
+
+$totalRatingStar = $helper->getSelleRating($sellerId);
+$ratingClass = "ht-mp-rating-icon ht-mp-star".(int)$totalRatingStar;
+?>
+<div class="ht-mp-rating-block" id="rating">
+    <div class="ht-mp-rating-left">
+        <div class="ht-mp-rating-avg">
+            <div class="ht-mp-rating-avg-count <?= $block->escapeHtml($ratingClass)?>">
+                <?= $block->escapeHtml($totalRatingStar); ?>
+            </div>
+            <div class="ht-mp-rating-avg-txt">
+                <?= $block->escapeHtml(__('Average Rating (%1)', $feeds['feedcount']))?>
+            </div>
+            <div class="ht-mp-rating-avg-txt">
+                <?php
+                $review_percentage = (($totalRatingStar*100)/5);
+                /* @noEscape */ echo $review_percentage."% ".__('positive feedback');
+                ?>
+            </div>
+            <div class="ht-mp-collection-view-btn">
+                <a href="<?= /* @noEscape */ $feedbackUrl.'#customer-reviews'?>" title="<?= $block->escapeHtml(__('Make a Review'))?>">
+                    <?= $block->escapeHtml(__('Write your Review'))?>
+                </a>
+            </div>
+        </div>
+        <div class="ht-mp-rating-individual">
+            <div class="ht-mp-rating-individual-left">
+                <div class="<?= $block->escapeHtml($avgPriceRatingClass)?>">
+                    <?= $block->escapeHtml($avgPriceRatingStar) ?>
+                </div>
+                <div class="ht-mp-rating-individual-txt">
+                    <?= $block->escapeHtml(__('Average Price Rating (%1)', $feeds['feedcount']))?>
+                </div>
+            </div>
+            <div class="ht-mp-rating-individual-right">
+                <div  class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('5 Star (%1)', $feeds['price_star_5']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star5-rating-color-bar" style="width:<?= $block->escapeHtml($widthPriceStar5); ?>%; border-width:<?= $block->escapeHtml($borderPriceStar5); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('4 Star (%1)', $feeds['price_star_4']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star4-rating-color-bar" style="width:<?= $block->escapeHtml($widthPriceStar4); ?>%; border-width:<?= $block->escapeHtml($borderPriceStar4); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div  class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('3 Star (%1)', $feeds['price_star_3']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star3-rating-color-bar" style="width:<?= $block->escapeHtml($widthPriceStar3); ?>%; border-width:<?= $block->escapeHtml($borderPriceStar3); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('2 Star (%1)', $feeds['price_star_2']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star2-rating-color-bar"
+                            style="width:<?= $block->escapeHtml($widthPriceStar2); ?>%; border-width:<?= $block->escapeHtml($borderPriceStar2); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('1 Star (%1)', $feeds['price_star_1']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star1-rating-color-bar" style="width:<?= $block->escapeHtml($widthPriceStar1); ?>%; border-width:<?= $block->escapeHtml($borderPriceStar1); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ht-mp-rating-individual">
+            <div class="ht-mp-rating-individual-left">
+                <div class="<?= $block->escapeHtml($avgValueRatingClass)?>">
+                    <?= $block->escapeHtml($avgValueRatingStar) ?>
+                </div>
+                <div class="ht-mp-rating-individual-txt">
+                    <?= $block->escapeHtml(__('Average Value Rating (%1)', $feeds['feedcount']))?>
+                </div>
+            </div>
+            <div class="ht-mp-rating-individual-right">
+                <div  class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('5 Star (%1)', $feeds['value_star_5']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star5-rating-color-bar" style="width:<?= $block->escapeHtml($widthValueStar5); ?>%; border-width:<?= $block->escapeHtml($borderValueStar5); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('4 Star (%1)', $feeds['value_star_4']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star4-rating-color-bar" style="width:<?= $block->escapeHtml($widthValueStar4); ?>%; border-width:<?= $block->escapeHtml($borderValueStar4); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div  class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('3 Star (%1)', $feeds['value_star_3']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star3-rating-color-bar" style="width:<?= $block->escapeHtml($widthValueStar3); ?>%; border-width:<?= $block->escapeHtml($borderValueStar3); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('2 Star (%1)', $feeds['value_star_2']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star2-rating-color-bar"
+                            style="width:<?= $block->escapeHtml($widthValueStar2); ?>%; border-width:<?= $block->escapeHtml($borderValueStar2); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('1 Star (%1)', $feeds['value_star_1']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star1-rating-color-bar" style="width:<?= $block->escapeHtml($widthValueStar1); ?>%; border-width:<?= $block->escapeHtml($borderValueStar1); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ht-mp-rating-individual">
+            <div class="ht-mp-rating-individual-left">
+                <div class="<?= $block->escapeHtml($avgQualityRatingClass)?>">
+                    <?= $block->escapeHtml($avgQualityRatingStar) ?>
+                </div>
+                <div class="ht-mp-rating-individual-txt">
+                    <?= $block->escapeHtml(__('Average Quality Rating (%1)', $feeds['feedcount']))?>
+                </div>
+            </div>
+            <div class="ht-mp-rating-individual-right">
+                <div  class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('5 Star (%1)', $feeds['quality_star_5']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star5-rating-color-bar" style="width:<?= $block->escapeHtml($widthQualityStar5); ?>%; border-width:<?= $block->escapeHtml($borderQualityStar5); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('4 Star (%1)', $feeds['quality_star_4']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star4-rating-color-bar" style="width:<?= $block->escapeHtml($widthQualityStar4); ?>%; border-width:<?= $block->escapeHtml($borderQualityStar4); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div  class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('3 Star (%1)', $feeds['quality_star_3']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star3-rating-color-bar" style="width:<?= $block->escapeHtml($widthQualityStar3); ?>%; border-width:<?= $block->escapeHtml($borderQualityStar3); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('2 Star (%1)', $feeds['quality_star_2']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star2-rating-color-bar"
+                            style="width:<?= $block->escapeHtml($widthQualityStar2); ?>%; border-width:<?= $block->escapeHtml($borderQualityStar2); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+                <div class="ht-mp-rating-progress-bar-container">
+                    <div class="ht-mp-rating-individual-right-txt">
+                        <?= $block->escapeHtml(__('1 Star (%1)', $feeds['quality_star_1']))?>
+                    </div>
+                    <div class="ht-mp-rating-individual-progress-bar">
+                        <small>
+                            <span class="ht-mp-rating-progress-color-bar ht-mp-star1-rating-color-bar" style="width:<?= $block->escapeHtml($widthQualityStar1); ?>%; border-width:<?= $block->escapeHtml($borderQualityStar1); ?>px;"></span>
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ht-mp-rating-right">
+        <?php
+        foreach ($block->getFeedCollection() as $keyed) {
+            $feedcustomer = $block->Customer->load($keyed['buyer_id']);
+            $name = $keyed['feed_nickname'];
+            $feedDateTime= strtotime($keyed['created_at']);
+            $feedDate = date('M d, Y', $feedDateTime);
+            $feedPrice = round(($keyed['feed_price']/20), 1, PHP_ROUND_HALF_UP);
+            $feedValue = round(($keyed['feed_value']/20), 1, PHP_ROUND_HALF_UP);
+            $feedQuality = round(($keyed['feed_quality']/20), 1, PHP_ROUND_HALF_UP);
+            ?>
+            <div class="ht-mp-rating-row">
+                <div class="ht-mp-rating-customer-row">
+                    <span class="ht-mp-rating-val-txt ht-mp-float-left">
+                        <?= $block->escapeHtml($keyed['feed_summary'])?>
+                    </span>
+                    <span class="ht-mp-float-right">
+                        <?= $block->escapeHtml(__("By %1 ", $name))?>
+                        <i><?= $block->escapeHtml($feedDate)?></i>
+                    </span>
+                </div>
+                <div class="ht-mp-rating-summary-container">
+                    <div class="ht-mp-rating-review-row">
+                        <span class="ht-mp-rating-txt">
+                            <?= $block->escapeHtml(__("Rating")); ?>
+                        </span>
+                        <span class="ht-mp-rating-val">
+                            <span class="ht-mp-rating-val-txt">
+                                <?= $block->escapeHtml(__("Pricing")); ?>
+                            </span>
+                            <span class="ht-mp-rating-icon ht-mp-star<?= /* @noEscape */ $feedPrice?>">
+                                <?= $block->escapeHtml($feedPrice)?>
+                            </span>
+                        </span>
+                        <span class="ht-mp-rating-val">
+                            <span class="ht-mp-rating-val-txt">
+                                <?= $block->escapeHtml(__("Value")); ?>
+                            </span>
+                            <span class="ht-mp-rating-icon ht-mp-star<?= $block->escapeHtml($feedValue)?>">
+                                <?= $block->escapeHtml($feedValue)?>
+                            </span>
+                        </span>
+                        <span class="ht-mp-rating-val">
+                            <span class="ht-mp-rating-val-txt">
+                                <?= $block->escapeHtml(__("Quality")); ?>
+                            </span>
+                            <span class="ht-mp-rating-icon ht-mp-star<?= $block->escapeHtml($feedQuality)?>">
+                                <?= $block->escapeHtml($feedQuality)?>
+                            </span>
+                        </span>
+                    </div>
+                    <p><?= $block->escapeHtml($keyed['feed_review'])?></p>
+                </div>
+            </div>
+            <?php
+        } ?>
+        <div class="ht-mp-collection-view-btn">
+            <a href="<?= $block->escapeUrl($feedbackUrl)?>" title="<?= $block->escapeHtml(__('View All Reviews'))?>" target="blank">
+                <?= $block->escapeHtml(__('View All Reviews'))?>
+            </a>
+        </div>
+    </div>
+</div>

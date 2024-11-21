@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="marketplace_order_view_totals"/>
+    <update handle="print" />
+    <body>
+        <referenceBlock name="page.main.title">
+            <block class="Hts\Marketplace\Block\Order\View" name="marketplace.order.status" template="Hts_Marketplace::order/order_status.phtml" />
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Hts\Marketplace\Block\Order\View" name="marketplace_order_printorder" template="Hts_Marketplace::order/print.phtml" cacheable="false">
+                <block class="Hts\Marketplace\Block\Order\Items" name="marketplace_order_items" template="Hts_Marketplace::order/items.phtml" />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

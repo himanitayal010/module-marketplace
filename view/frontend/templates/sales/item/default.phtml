@@ -1,0 +1,30 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+?>
+<?php
+$item = $block->getParentBlock()->getItem();
+$profileModel = $block->getProfileHelper();
+$productId = $item->getProduct()->getId();
+$sellerId = $profileModel->getUserInfo($productId, $item->getOrderId());
+if ($sellerId) {
+    list($shopTitle, $shopUrl) = $profileModel->getSellerDetails($sellerId);
+    ?>
+    <div class="ht-seller-block ht-block" id="mp-ht-block">
+        <div>
+            <span class="ht-block-font-bold-up"><?= /* @noEscape */ __('Sold By')?></span>
+            <span class="ht-block-title-css">
+                <a href="<?= $block->escapeUrl($profileModel->getShopUrl($shopUrl));?>" 
+                title="<?= /* @noEscape */ __('Visit Shop') ?>" 
+                id="profileconnect"><?= $block->escapeHtml($shopTitle); ?></a>
+            </span>
+        </div>
+    </div>
+    <?php
+} ?>

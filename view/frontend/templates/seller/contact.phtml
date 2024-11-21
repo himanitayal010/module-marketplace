@@ -1,0 +1,156 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$captchenable = $helper->getCaptchaEnable();
+$partner = $block->getProfileDetail();
+$sellerId = $partner->getSellerId();
+?>
+<div class="ht-mp-seller-profile-box ht-mp-collection-header-bottom-txt">
+    <a class="askque"><?= $block->escapeHtml(__('Contact')) ?></a>
+    <div class="ask-que">
+        <div id="ht-mp-ask-data">
+            <div class="modals-wrapper">
+                <aside tabindex="0" data-type="popup" data-role="modal" class="modal-popup modal-slide _inner-scroll ht-mp-model-popup">
+                    <div tabindex="0" data-role="focusable-start"></div>
+                    <div data-role="focusable-scope" class="modal-inner-wrap">
+                        <header class="modal-header">
+                            <h4 class="modal-title"><?= $block->escapeHtml(__('Contact Seller')) ?></h4>
+                            <button type="button" data-role="closeBtn" class="action-close ht-close">
+                                <span><?= $block->escapeHtml(__('Close')) ?></span>
+                            </button>
+                            <span  class="ht-clear" ></span>
+                        </header>
+                        <?php
+                        if ($helper->isCustomerLoggedIn()) {
+                            $readonly = "readonly='readonly'";
+                            $customer = $helper->getCustomerData();
+                            $buyerName = $customer->getName();
+                                $buyerEmail = $customer->getEmail();
+                        } else {
+                            $readonly = '';
+                            $buyerName = '';
+                            $buyerEmail = '';
+                        }
+                        ?>
+                        <form id="ask-form" method="post" action="#" class="fieldset">
+                            <div class="modal-body form-list field required">
+                                <label class="label"><?= $block->escapeHtml(__('Your Name')) ?> :</label>
+                                <input type="text" name="name" class="queryemail ht-contact_input_fields required-entry" value="<?= $block->escapeHtml($buyerName)?>" <?= /* @noEscape */ $readonly?>/>
+                                <label class="label"><?= $block->escapeHtml(__('Your Email')) ?> :</label>
+                                <input type="text" name="email" class="queryemail required-entry validate-email ht-contact_input_fields" value="<?= $block->escapeHtml($buyerEmail)?>" <?= /* @noEscape */ $readonly?>/>
+                                <label class="label"><?= $block->escapeHtml(__('Subject')) ?> :</label>
+                                <input type="text" name="subject" class="ht-contact_input_fields required-entry"/>
+                                <label class="label"><?= $block->escapeHtml(__('Your Query')) ?> :</label>
+                                <textarea  name="ask" class="ht-full-width queryquestion ht-contact_input_fields required-entry"></textarea>
+                                <input type="hidden" name="seller-id" value="<?= $block->escapeHtml($sellerId);?>"/>
+                                <?php if ($captchenable) { ?>
+                                    <label class="label"><?= $block->escapeHtml(__('Please enter desired result')) ?></label>
+                                    <div>
+                                        <span>
+                                            <label for="ht-mp-captcha"><span id="ht-mp-captchalable1"><?= $block->escapeHtml(rand(1, 20))?></span> + <span id="ht-mp-captchalable2"><?= $block->escapeHtml(rand(1, 20))?></span> =</label>
+                                        </span>
+                                        <input type="text" class="required-entry ht-contact_input_fields" name="ht-mp-captcha" id="ht-mp-captcha" />
+                                    </div>
+                                    <?php
+                                }?>
+                            </div>
+                            <div class="modal-footer">
+                                <span class="error"></span>
+                                <span class="errormail"></span>
+                                <input type="reset" value="<?= $block->escapeHtml(__('Reset')) ?>" id="resetbtn" class="ht-btn ht-btn_default"/>
+                                <input type="submit" value="<?= $block->escapeHtml(__('Submit')) ?>" id="askbtn" class="ht-btn ht-btn-primary clickask"/>
+                                <span class="ht-clear"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div tabindex="0" data-role="focusable-end"></div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "jquery",
+        "mage/mage"
+    ], function($) {
+        var askDataForm = $('#ask-form');
+        askDataForm.mage('validation', {});
+
+        $('body').append($('#ht-mp-ask-data'));
+        $('.askque').click(function() {
+            $('#ask-form input,#ask-form textarea').removeClass('mage-error');
+            $('.page-wrapper').css('opacity','0.4');
+            $('.ht-mp-model-popup').addClass('_show');
+            $('#ht-mp-ask-data').show();
+        });
+        $('.ht-close').click(function() {
+            $('.page-wrapper').css('opacity','1');
+            $('#resetbtn').trigger('click');
+            $('#ht-mp-ask-data').hide();
+            $('#ask-form .validation-failed').each(function() {
+                $(this).removeClass('validation-failed');
+            });
+            $('#ask-form .validation-advice').each(function() {
+                $(this).remove();
+            });
+        });
+        $('#askbtn').click(function() {
+            if (askDataForm.valid()!=false) {
+                var thisthis = $(this);
+                if (thisthis.hasClass("clickask")) {
+                    <?php if ($captchenable) { ?>
+                        var total = parseInt($('#ht-mp-captchalable1').text()) + parseInt($('#ht-mp-captchalable2').text());
+                        var ht_mp_captcha = $('#ht-mp-captcha').val();
+                        if (total != ht_mp_captcha) {
+                            $('#ht-mp-captchalable1').text(Math.floor((Math.random()*10)+1));
+                            $('#ht-mp-captchalable2').text(Math.floor((Math.random()*100)+1));
+                            $('#ht-mp-captcha').val('');
+                            $('#ht-mp-captcha').addClass('mage-error');
+                            $(this).addClass('mage-error');
+                            $('#ask_form .errormail').text("<?= $block->escapeHtml(__(' Wrong verification number. ')) ?>").slideDown('slow').delay(2000).slideUp('slow');
+                        } else {
+                            thisthis.removeClass('clickask');
+                            $('#ht-mp-ask-data').addClass('mail-procss');
+                            $.ajax({
+                                url:'<?= $block->escapeUrl($block->getUrl("marketplace/seller/sendmail", ["_secure" => $this->getRequest()->isSecure()])) ?>',
+                                data:$('#ask-form').serialize(),
+                                type:'post',
+                                dataType:'json',
+                                success:function(d) {
+                                    thisthis.addClass('clickask');
+                                    $('#ht-mp-ask-data').removeClass('mail-procss')
+                                    alert("<?= $block->escapeHtml(__('Your mail has been sent.')) ?>..");
+                                    $('.ht-close,#resetbtn').trigger('click');
+                                }
+                            });
+                        }
+                    <?php } else { ?>
+                        thisthis.removeClass('clickask');
+                            $('#ht-mp-ask-data').addClass('mail-procss');
+                            $.ajax({
+                                url:'<?= $block->escapeUrl($block->getUrl("marketplace/seller/sendmail", ["_secure" => $this->getRequest()->isSecure()])) ?>',
+                                data:$('#ask-form').serialize(),
+                                type:'post',
+                                dataType:'json',
+                                success:function(d) {
+                                    thisthis.addClass('clickask');
+                                    $('#ht-mp-ask-data').removeClass('mail-procss')
+                                    alert("<?= $block->escapeHtml(__('Your mail has been sent.')) ?>..");
+                                    $('.ht-close,#resetbtn').trigger('click');
+                                }
+                            });
+                    <?php } ?>
+                }
+                return false;
+            }
+        });
+    });
+</script>

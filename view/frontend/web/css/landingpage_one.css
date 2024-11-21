@@ -1,0 +1,257 @@
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+.page-title-wrapper {
+    display: none;
+}
+#password-strength-meter {
+    height: auto !important;
+    line-height: 20px;
+}
+.ht-mp-header {
+    color: #FFFFFF;
+    padding: 7.5%;
+    text-align: center;
+}
+.ht-mp-header h1 {
+    font-size: 1.9em;
+    color: #FFFFFF;
+    margin: .5em 0;
+    font-weight: bold;
+    word-wrap: break-word;
+}
+.ht-mp-header h2 {
+    font-size: 20px;
+    color: #FFFFFF;
+    text-transform: inherit;
+    margin: .5em 0;
+    font-weight: 600;
+}
+.ht-list-container-wrapper {
+    padding: 3% 0;
+    width: 65%;
+    display: inline-block;
+}
+.ht-list-container-registration {
+    background-color: #FFFFFF;
+}
+.ht-mp-landingpage .form.create.account .fieldset {
+    margin-bottom: 0;
+    min-height: auto;
+    padding: 0;
+    background: transparent;
+    border: none;
+    width: 100%;
+}
+.ht-list-container-registration .control {
+    width: 100%!important;
+}
+.ht-list-container-registration .actions-toolbar {
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+@media only screen and (max-width: 768px) {
+    .ht-list-container-registration {
+        padding: 10px;
+    }
+}
+.ht-text-transform-left {
+    text-align: left;
+}
+.ht-text-transform-center {
+    text-align: center;
+}
+@media(min-width: 1001px) {
+    .ht-mp-landingpage .ht-list-container {
+        padding: 1%;
+        float:left;
+        width: 48%;
+    }
+}
+@media(max-width: 1000px) {
+    .ht-mp-landingpage .ht-list-container {
+        width: 100%;
+    }
+}
+.ht-mp-landingpage ul li {
+    display: inline-block;
+    width: 100%;
+}
+.ht-icon-container {
+    width: 60px;
+    float: left;
+}
+.ht-icon-content {
+    float: left;
+    width: calc(100% - 60px);
+}
+.ht-icon-content .ht-icon-span {
+    display: inline-block;
+    width: 100%;
+    padding-bottom: 5px;
+}
+.ht-mp-landingpage ul li .ht-icon-container:before,
+.ht-mp-landingpage ul li.ht-icon-check:before {
+    content: '';
+    display: inline-block;
+    height: 50px;
+    width: 50px;
+    background-repeat: no-repeat;
+    background-image: url('../images/landingpage1/icon/sell-page-2-sprite.png');
+}
+.ht-icon1 .ht-icon-container:before {
+    background-position: 0 0;
+}
+.ht-icon2 .ht-icon-container:before {
+    background-position: -50px 0;
+}
+.ht-icon3 .ht-icon-container:before {
+    background-position: -100px 0;
+}
+.ht-icon4 .ht-icon-container:before {
+    background-position: -150px 0;
+}
+.ht-icon5 .ht-icon-container:before {
+    background-position: -200px 0;
+}
+.ht-icon6 .ht-icon-container:before {
+    background-position: 0 -50px;
+}
+.ht-icon7 .ht-icon-container:before {
+    background-position: -50px -50px;
+}
+.ht-icon8 .ht-icon-container:before {
+    background-position: -100px -50px;
+}
+.ht-icon9 .ht-icon-container:before {
+    background-position: -150px -50px;
+}
+.ht-icon10 .ht-icon-container:before {
+    background-position: -200px -50px;
+}
+.ht-icon-check:before {
+    background-position: 0 -100px;
+    width: 28px!important;
+    height: 25px!important;
+}
+.ht-mp-landingpage ul {
+    width: 90%;
+}
+.ht-mp-landingpage ul li {
+    list-style: none;
+    vertical-align: top;
+    text-align: left;
+}
+.ht-mp-landingpage ul li .ht-icon-span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4F9DD5;
+    vertical-align: top;
+}
+@media only screen and (max-width: 768px) {
+    .ht-mp-landingpage ul li .ht-icon-span {
+        font-size: 1.2rem;
+    }
+}
+.ht-mp-landingpage ul li .ht-icon-div {
+    font-size: 12px;
+    color: #807E7E;
+}
+.ht-mp-landingpage .ht-icon-check-span {
+    font-size: 16px;
+    font-weight: 600;
+    color: #807E7E;
+    vertical-align: top;
+}
+.ht-list-container-class {
+    width: 100%;
+    background-color: #f4f4f4;
+}
+.ht-list-container-feature-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #6B6767;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+.ht-mp-landingpage .form.create.account {
+    width: 100%;
+    min-width: 100%;
+    color: #807E7E;
+}
+.ht-mp-landingpage .form.create.account .legend, .newsletter, br {
+    display: none!important;
+}
+.ht-mp-landingpage .form.create.account .fieldset {
+    margin-bottom: 0;
+}
+.ht-mp-landingpage .form.create.account .info .field,
+.ht-mp-landingpage .form.create.account .account .password,
+.ht-mp-landingpage .form.create.account .account .confirmation {
+    width: 48%;
+    padding-right: 1%;
+    float: left;
+}
+@media only screen and (max-width: 768px) {
+    .ht-mp-landingpage .form.create.account .info .field,
+    .ht-mp-landingpage .form.create.account .account .password,
+    .ht-mp-landingpage .form.create.account .account .confirmation {
+        width: 100%;
+        padding-right: 1%;
+        float: none;
+    }
+}
+.ht-mp-landingpage .form.create.account .field {
+    margin-bottom: 10px;
+}
+.ht-mp-landingpage .form.create.account .account .password,
+.ht-mp-landingpage .form.create.account .account .confirmation {
+    margin-bottom: 30px;
+}
+.ht-mp-landingpage .form.create.account .account input[type=email]{
+    width: 97%;
+}
+.ht-mp-landingpage .primary {
+    text-transform: uppercase;
+}
+#ht-vender-login-box a {
+    font-weight: 700;
+    color: red;
+}
+.column.main {
+    min-height: 0!important;
+}
+#ht-termsconditions-box, .profileurl {
+    display: inline-block;
+}
+.ht-mp-landing-button {
+    background-color: #fff!important;
+    border-radius: 0!important;
+    text-transform: uppercase!important;
+    font-size: 14px!important;
+}
+.ht-mp-landing-button strong{
+    color: #4F9DD5!important;
+}
+.ht-mp-header h1 {
+    text-transform: uppercase!important;
+}
+#wantptr {
+    display: inline-block!important;
+}
+.ht-list-container #register-form-now {
+    width: 100%!important;
+}
+.ht-mp-landingpage #register-form-now .form.create.account .info .field,
+.ht-mp-landingpage #register-form-now .form.create.account .account .password,
+.ht-mp-landingpage #register-form-now .form.create.account .account .confirmation {
+    width: 100%!important;
+    padding-right:0!important;
+    float: none!important;
+}

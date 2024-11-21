@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+           <css src="Hts_Marketplace::css/ht_block.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Hts\Marketplace\Block\Sellerregistration" name="seller_form_register" template="confpartner.phtml" ifconfig="marketplace/landingpage_settings/allow_seller_registration_block"></block>
+        </referenceContainer>
+    </body>
+</page>

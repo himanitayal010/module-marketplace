@@ -1,0 +1,43 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+?>
+<?php
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$_product=$product;
+$seller_id = '';
+$marketplaceProduct = $helper->getSellerProductDataByProductId($_product['entity_id']);
+foreach ($marketplaceProduct as $value) {
+    $seller_id = $value['seller_id'];
+}
+if ($seller_id!="") {
+    $rowsocial = $helper->getSellerDataBySellerId($seller_id);
+    $shoptitle = '';
+    $shop_url = '';
+    foreach ($rowsocial as $value) {
+        $shoptitle = $value['shop_title'];
+        $shop_url = $value['shop_url'];
+        if (!$shoptitle) {
+            $shoptitle = $value->getShopUrl();
+        }
+    }
+    $shoptitle = $block->escapeHtml($shoptitle);
+    ?>
+    <div class="ht-seller-block ht-block" id="mp-ht-block">
+        <div>
+            <span class="ht-block-font-bold-up"><?= /* @noEscape */ __('Sold By')?></span>
+            <span class="ht-block-title-css">
+                <a href="<?= $block->escapeUrl($helper->getRewriteUrl('marketplace/seller/profile/shop/'.$shop_url));?>" title="<?= /* @noEscape */ __('Visit Shop') ?>" id="profileconnect"><?= $block->escapeHtml($shoptitle); ?></a>
+            </span>
+        </div>
+    </div>
+    <?php
+} ?>

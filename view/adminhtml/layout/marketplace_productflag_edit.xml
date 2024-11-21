@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<update handle="styles"/>
+	<body>
+		<referenceContainer name="content">
+			<uiComponent name="marketplace_productflag_form"/>
+		</referenceContainer>
+	</body>
+</page>

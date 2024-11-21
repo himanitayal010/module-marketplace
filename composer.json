@@ -1,0 +1,24 @@
+{
+    "name": "htsr/module-marketplace",
+    "description": "HTS Adobe Commerce Marketplace Multi Seller/Partner Module",
+    "require": {
+        "magento/module-config": "101.2.*",
+        "magento/module-backend": "102.0.*",
+        "magento/framework": "103.0.*",
+        "magento/module-ui": "101.2.*",
+        "hts/recaptcha":"1.0.*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "HTS\\Marketplace\\": ""
+        }
+    }
+}

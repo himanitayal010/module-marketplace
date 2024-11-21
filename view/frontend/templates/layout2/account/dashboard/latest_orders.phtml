@@ -1,0 +1,23 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+?>
+<div class="ht-mp-dashboard-order-grid ht-mp-latest-order-grid">
+    <div class="ht-mp-order-grid-title-row">
+        <span class="ht-mp-float-left ht-mp-order-grid-title-row-sp1">
+            <?= $block->escapeHtml(__("Latest Orders"))?>
+        </span>
+        <span class="ht-mp-float-right ht-mp-order-grid-title-row-sp2">
+            <a href="<?= $block->escapeUrl($block->getUrl('marketplace/order/history', ['_secure' => $this->getRequest()->isSecure()]))?>">
+                <?= $block->escapeHtml(__("View All Orders"))?>
+            </a>
+        </span>
+    </div>
+    <?= $this->getChildHtml()?>
+</div>

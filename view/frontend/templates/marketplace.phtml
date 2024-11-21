@@ -1,0 +1,18 @@
+<?php
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+$helper = $this->helper(\Hts\Marketplace\Helper\Data::class);
+$pageLayout  =    $helper->getPageLayout();
+if ($pageLayout == 1) {
+    echo $block->getChildHtml('landingPagelayout1');
+} elseif ($pageLayout == 2) {
+    echo $block->getChildHtml('landingPagelayout2');
+} else {
+    echo $block->getChildHtml('landingPagelayout3');
+}

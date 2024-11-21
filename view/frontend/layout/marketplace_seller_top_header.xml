@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * HTS Inc.
+ *
+ * @category  HTS
+ * @package   HTS_Marketplace
+ * @author    HTS
+ * @copyright Copyright (c) HTS Inc.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Hts_Marketplace::css/ht_block.css"/>
+        <css src="Hts_Marketplace::css/style.css"/>
+        <css src="Hts_Marketplace::css/collection.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Hts\Marketplace\Block\Profile" name="marketplace_seller_top_block" template="Hts_Marketplace::seller/top-block.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="marketplace_seller_top_block">
+            <block class="Hts\Marketplace\Block\Profile" name="marketplace_seller_profile_contact" template="Hts_Marketplace::seller/contact.phtml"/>
+            <block class="Hts\Marketplace\Block\Profile" name="marketplace_seller_profile_menu" template="Hts_Marketplace::seller/menu.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>
