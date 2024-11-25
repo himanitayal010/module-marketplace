@@ -6,7 +6,7 @@
         "magento/module-backend": "102.0.*",
         "magento/framework": "103.0.*",
         "magento/module-ui": "101.2.*",
-        "hts/recaptcha":"1.0.*"
+        "htsr/recaptcha":"1.0.*"
     },
     "type": "magento2-module",
     "version": "1.0.0",
